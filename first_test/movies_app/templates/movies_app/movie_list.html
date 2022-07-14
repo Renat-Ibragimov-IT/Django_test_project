@@ -1,0 +1,88 @@
+{% extends "global.html" %}
+
+{% block title %}
+<title>Movies</title>
+{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Movies</h2>
+    <div class="container-xl">
+        <div class="row">
+            <div class="col-8">
+                <div class="list-group">
+                    {% for movie in object_list %}
+                        <a href="movies/{{movie.id}}"
+                           class="list-group-item list-group-item-action">
+                            {{ movie.name }}
+                            ({{movie.release_date|date:"Y"}})</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="post-form">
+                    <h4>Add new movie</h4>
+                    <form action="" method="POST" class="post-form">
+                        {% csrf_token %}
+                        <fieldset>
+          <div class="text-left">
+             {% for field in form %}
+                {% if form.non_field_error %}
+                    <div class="control-group error">
+                        <label class="control-label">{{ field.label }}</label>
+                        <div class="controls">{{ field }}
+                            <p class="text-danger"><small>
+                                {% for error in  form.non_field_error %}
+                                {{ error }}
+                                {% endfor %}</small></p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="control-group">
+                        <label class="control-label" style="margin-top: 5px">
+                            {{ field.label }}</label>
+                        <div class="controls">{{ field }}
+                            {% if field.help_text %}
+                                <small class="form-text text-muted">
+                                    {{ field.help_text }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+          </div>
+          </fieldset>
+                        <button type="submit" class="btn btn-primary"
+                                style="margin-top: 15px">
+                            Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav aria-label="Page navigation" class="navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.
+                                         previous_page_number }}">
+                                         Previous</a></li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link" href="#">{{ page_obj.number }}
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            {% if page_obj.has_next %}
+                 <li class="page-item">
+                     <a class="page-link"
+                        href="?page={{ page_obj.next_page_number }}">
+                         Next</a></li>
+                 <li class="page-item">
+                     <a class="page-link"
+                        href="?page={{ page_obj.paginator.num_pages }}">
+                         Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

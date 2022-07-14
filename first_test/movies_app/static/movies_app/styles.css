@@ -1,0 +1,47 @@
+.movies-list-body {
+  background: url("images/pattern2.webp") repeat center center fixed;
+}
+
+.container {
+    max-width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.col-sm-4 {
+    background-color: white;
+    border-radius: 30px;
+    border: 1px solid #e7dddd;
+    box-shadow: 18px 16px 14px #bdb2b2;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 2.5% 2.5% 0 2.5%;
+    max-width: 50%;
+}
+
+.movie-name {
+    text-align: center;
+    line-height: 1;
+    margin-top: -3px;
+}
+
+.movies-pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+    justify-content: center;
+}

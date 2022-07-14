@@ -1,0 +1,30 @@
+.global-body {
+  background: url("images/pattern2.webp") repeat center center fixed;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.list-group {
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+.post-form {
+    padding-right: 10%;
+}
+
+.navigation {
+    margin-top: 20px;
+}
+
+.card-text {
+    margin-bottom: 0;
+}
+
+.actor-names {
+    margin-bottom: 0;
+}
+

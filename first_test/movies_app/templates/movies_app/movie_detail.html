@@ -1,0 +1,39 @@
+{% extends "global.html" %}
+
+{% block title %}
+<title>Movie Detail</title>
+{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Movie Detail</h2>
+    <div class="card" style="margin-left: 20%; margin-right: 20%">
+        <h4 class="card-header text-center">{{movie.name}}</h4>
+        <div class="card-body">
+            <p class="card-text"><b>Description: </b>{{movie.description}}</p>
+            <p class="card-text"><b>Release date:
+                                 </b>{{movie.release_date}}</p>
+            <p class="card-text"><b>Rating: </b>{{movie.rating}}</p>
+            <p class="card-text"><b>Vote: </b>{{movie.vote}}</p>
+            <p class="card-text"><b>Duration:
+                                 </b>{{movie.duration|time:"h:i"}}</p>
+            <p class="card-text"><b>Actors: </b></p>
+                {% for actor in movie.actors.all %}
+                <ul class="actor-names">
+                    <li>{{actor.name}}</li>
+                </ul>
+                {% endfor %}
+        </div>
+    </div>
+        <div class="row" style="margin-top: 20px">
+            <div class="col" style="text-align: right">
+                <a class="btn btn-outline-primary btn-lg"
+                   href="{{movie.id}}/voting?count=1" role="button"
+                   style="font-size:50px">&#128525</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-outline-danger btn-lg"
+                   href="{{movie.id}}/voting?count=-1" role="button"
+                   style="font-size:50px">&#128169</a>
+            </div>
+        </div>
+{% endblock %}

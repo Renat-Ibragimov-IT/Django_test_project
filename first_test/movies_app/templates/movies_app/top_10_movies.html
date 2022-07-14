@@ -1,0 +1,16 @@
+{% extends "global.html" %}
+
+{% block title %}
+<title>Top 10 Movies</title>
+{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Top 10 Movies</h2>
+    <div class="list-group">
+        {% for movie in object_list %}
+            <a href="{{movie.id}}"
+               class="list-group-item list-group-item-action">
+                {{ movie.name }} (Rating: {{movie.rating}})</a>
+        {% endfor %}
+    </div>
+{% endblock %}

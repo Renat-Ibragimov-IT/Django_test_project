@@ -1,0 +1,42 @@
+{% extends "global.html" %}
+
+{% block title %}
+<title>Top Movies</title>
+{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Top Movies</h2>
+    <div class="list-group">
+        {% for movie in object_list %}
+            <a href="/movies/{{movie.id}}"
+               class="list-group-item list-group-item-action">
+                {{ movie.name }} (Rating: {{movie.rating}})</a>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation" class="navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.
+                                         previous_page_number }}">
+                                         Previous</a></li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link" href="#">{{ page_obj.number }}
+                    <span class="sr-only">(current)</span></a>
+            </li>
+            {% if page_obj.has_next %}
+                 <li class="page-item">
+                     <a class="page-link"
+                        href="?page={{ page_obj.next_page_number }}">
+                         Next</a></li>
+                 <li class="page-item">
+                     <a class="page-link"
+                        href="?page={{ page_obj.paginator.num_pages }}">
+                         Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

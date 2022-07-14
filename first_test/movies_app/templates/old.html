@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Movies List</title>
+{% endblock %}
+
+{% block content %}
+<body class="movies-list-body">
+
+    <div class="container">
+      <div class="row">
+        {% for movie in page_obj %}
+          <div class="col-sm-4">
+                <h3 class="movie-name">{{movie.name}}</h3>
+                <ul><li><b>Description: </b>{{movie.description}}</li>
+                    <li><b>Release date: </b>{{movie.release_date}}</li>
+                    <li><b>Rating: </b>{{movie.rating}}</li>
+                    <li><b>Duration: </b>{{movie.duration|time:"h:i"}}</li>
+                    <li><b>Actors: </b>
+                    {% for actor in movie.actors.all %}
+                       <ul><li>{{actor.name}}</li></ul>
+                       {%endfor%}</ul></li>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="movies-pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link" href="#">{{ page_obj.number }}<span class="sr-only">(current)</span></a>
+            </li>
+            {% if page_obj.has_next %}
+                 <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                 <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</body>
+{% endblock %}
